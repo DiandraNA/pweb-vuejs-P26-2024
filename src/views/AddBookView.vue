@@ -46,6 +46,7 @@ export default defineComponent({
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MzIyNTFmOGVmNTE5YzZhODhlNDQ0MCIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwiaWF0IjoxNzMzMjE4NzAxfQ.kT43Ie-eAlfvtehxdoDHj1MBmL0E4UjBOcsWso82L6c'
         },
         body: JSON.stringify(newBook),
       });

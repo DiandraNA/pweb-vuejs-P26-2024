@@ -19,19 +19,26 @@ export default {
     fetchError: false,
   }),
   async mounted() {
-    try {
-      const response = await fetch("http://localhost:8080/book");
-      if (!response.ok) {
-        throw new Error("Failed to fetch books data");
+  try {
+    const response = await fetch("http://localhost:8080/book", {
+      headers: {
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MzIyNTFmOGVmNTE5YzZhODhlNDQ0MCIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwiaWF0IjoxNzMzMjE4NzAxfQ.kT43Ie-eAlfvtehxdoDHj1MBmL0E4UjBOcsWso82L6c'
       }
-      const data = await response.json();
-      console.log(data);
-      this.booksData = [...data.data];
-    } catch (error) {
-      console.error(error);
+    });
+    const data = await response.json();
+    console.log(data); // Log the entire response data
+    if (Array.isArray(data)) {
+      this.booksData = [...data];
+    } else {
+      console.error("Unexpected data format:", data);
       this.fetchError = true;
     }
-  },
+  } catch (error) {
+    console.error(error);
+    this.fetchError = true;
+  }
+}
+  ,
   components: {
     BookCard,
   },
